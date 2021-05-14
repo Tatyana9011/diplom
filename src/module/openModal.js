@@ -1,8 +1,7 @@
 // eslint-disable-next-line strict
 'use strict';
 const openModal = () => {
-  const callbackBtn = document.querySelector('.callback-btn.hidden-xs'),
-    modalCallback = document.querySelector('.modal-callback'),
+  const modalCallback = document.querySelector('.modal-callback'),
     modalOverlay = document.querySelector('.modal-overlay'),
     modalClose = document.querySelector('.modal-close');
 
@@ -11,6 +10,7 @@ const openModal = () => {
     modalOverlay.style.display = 'block';
     document.addEventListener('keydown', escapeHandler);
   };
+  openModalStart();
 
   const closeModal = () => {
     modalCallback.style.display = 'none';
@@ -24,7 +24,7 @@ const openModal = () => {
   };
   modalClose.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', closeModal);
-  callbackBtn.addEventListener('click', openModalStart);
+
 };
 
 export default openModal;

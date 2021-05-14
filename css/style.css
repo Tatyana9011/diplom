@@ -1242,3 +1242,9 @@ video#video_background {
 .slider-item-active {
   display: none;
 }
+.element-content {
+  height: "";
+}
+.element-content.active {
+  height: 100%;
+}

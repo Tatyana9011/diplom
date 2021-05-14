@@ -1,5 +1,5 @@
-// eslint-disable-next-line strict
 'use strict';
+
 const smoothScroll = () => {
   const scrollUp = document.querySelector('.top-slider');
   const up = document.querySelector('.up');
@@ -31,12 +31,10 @@ const smoothScroll = () => {
 
       scrollBlock.addEventListener('click', event => {
         event.preventDefault();
-
         const id = scrollBlock.getAttribute("href");
 
         if (id !== '#') {
           const getId = document.querySelector(id);
-
           if (getId !== null) {
             getId.scrollIntoView({
               behavior: 'smooth',
