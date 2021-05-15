@@ -3,7 +3,7 @@
 const sendForm = idForm => {
   const errorMessage = 'Что то пошло не так...',
     successMessage = 'Спасибо! Мы скоро с вами свяжемся!',
-    preloder = './../images/preloader.svg';
+    preloder = './preloader.svg';
 
   const form = document.getElementById(idForm);
   const statusMessage = document.createElement('div');

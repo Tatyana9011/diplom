@@ -1,5 +1,6 @@
 // eslint-disable-next-line strict
 'use strict';
+
 const slider = () => {
   const slide = document.querySelectorAll('.item');
   let currentSlide = 0;
@@ -7,6 +8,7 @@ const slider = () => {
   const prevSlide = (elem, index, strClass) => {
     elem[index].classList.add(strClass);
   };
+
   const nextSlide = (elem, index, strClass) => {
     elem[index].classList.remove(strClass);
   };

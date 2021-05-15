@@ -2,8 +2,8 @@
 
 const accordion = () => {
   const accordionElement = document.querySelector('.accordeon'),
-    element = document.querySelectorAll('.element'),
-    elementContent = document.querySelectorAll('.element-content');
+    element = accordionElement.querySelectorAll('.element'),
+    elementContent = accordionElement.querySelectorAll('.element-content');
 
   element.forEach(elem => {
     if (elem.children[1].classList.contains('active')) {
@@ -35,7 +35,6 @@ const accordion = () => {
 
   accordionElement.addEventListener('click', event => {
     const target = event.target;
-    console.log('target: ', target);
     if (target.classList.contains('title')) {
       const parent = target.closest('.element');
       const content = parent.querySelector('.element-content');

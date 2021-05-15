@@ -1,7 +1,7 @@
 'use strict';
 
 const smoothScroll = () => {
-  const scrollUp = document.querySelector('.top-slider');
+  const scrollUp = document.querySelector('body');
   const up = document.querySelector('.up');
   up.style.display = 'none';
 
