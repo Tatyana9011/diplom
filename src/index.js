@@ -5,7 +5,8 @@ import smoothScroll from './module/smoothScroll';
 import slider from './module/slider';
 import SliderCarousel from './module/sliderCarousel';
 import accordion from './module/accordeon';
-
+import sendForm from './module/sendForm';
+import validationAllInput from './module/validationForm';
 
 const imgWrapper = document.querySelectorAll('.fancyboxModal');
 imgWrapper.forEach(item => {
@@ -40,3 +41,6 @@ const options = {
 const carousel = new SliderCarousel(options);
 carousel.init();
 accordion();
+
+validationAllInput();
+sendForm('form-callback');
