@@ -24,12 +24,14 @@ const div = document.createElement('div');
 const checkResponse = () => {
   div.innerHTML = '';
   if (document.documentElement.clientWidth > 990) {
+
     sliderCarousel(3, div);
   } else if (document.documentElement.clientWidth > 760) {
     sliderCarousel(2, div);
   } else {
     sliderCarousel(1, div);
   }
+
 };
 
 checkResponse();
