@@ -28,7 +28,7 @@ const sliderCarousel = quantity => {
   renderElem(elementMap);
 
   const prevSlide = index => {
-    elementMap.splice(2);
+    elementMap.splice(quantity - 1);
     elementMap.unshift(slide[index]);
     renderElem(elementMap);
   };
