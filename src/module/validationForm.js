@@ -23,6 +23,7 @@ const validationAllInput = () => {
     }
     return newArr;
   };
+
   const blurValidateName = (elem, target) => {
     const getValue = target.value.trim().replace(/\s{2,}/, ' ').replace(/^[ |-]/, '')
       .replace(/[-]{2,}/, '-').split(" ");

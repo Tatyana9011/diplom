@@ -16,10 +16,13 @@ const slider = () => {
   const autoPlaySlide = () => {
     prevSlide(slide, currentSlide, 'slider-item-active');
     currentSlide++;
+
     if (currentSlide >= slide.length) {
       currentSlide = 0;
     }
+
     nextSlide(slide, currentSlide, 'slider-item-active');
+
   };
   const startSlide = (time = 3000) => {
     setInterval(autoPlaySlide, time);

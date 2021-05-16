@@ -24,6 +24,7 @@ const sliderCarousel = quantity => {
       sliderContent.append(item);
     });
   };
+
   renderElem(elementMap);
 
   const prevSlide = index => {

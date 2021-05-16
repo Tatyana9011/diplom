@@ -1,6 +1,7 @@
 'use strick';
 
 const accordion = () => {
+
   const accordionElement = document.querySelector('.accordeon'),
     element = accordionElement.querySelectorAll('.element'),
     elementContent = accordionElement.querySelectorAll('.element-content');
@@ -35,6 +36,7 @@ const accordion = () => {
 
   accordionElement.addEventListener('click', event => {
     const target = event.target;
+
     if (target.classList.contains('title')) {
       const parent = target.closest('.element');
       const content = parent.querySelector('.element-content');
@@ -42,6 +44,7 @@ const accordion = () => {
         close(parent, content) :
         open(parent, content);
     }
+
   });
 };
 

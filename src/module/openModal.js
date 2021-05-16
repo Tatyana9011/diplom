@@ -10,6 +10,7 @@ const openModal = () => {
     modalOverlay.style.display = 'block';
     document.addEventListener('keydown', escapeHandler);
   };
+
   openModalStart();
 
   const closeModal = () => {
@@ -17,11 +18,13 @@ const openModal = () => {
     modalOverlay.style.display = 'none';
     document.removeEventListener('keydown', escapeHandler);
   };
+
   const escapeHandler = event => {
     if (event.code === 'Escape') {
       closeModal();
     }
   };
+
   modalClose.addEventListener('click', closeModal);
   modalOverlay.addEventListener('click', closeModal);
 

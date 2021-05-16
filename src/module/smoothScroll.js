@@ -13,14 +13,17 @@ const smoothScroll = () => {
       });
     });
   };
+
   click();
 
   window.addEventListener('scroll', () => {
+
     if (pageYOffset >= 612) {
       up.style.display = 'block';
     } else {
       up.style.display = 'none';
     }
+
   });
 
   const scroll = () => {
@@ -41,6 +44,7 @@ const smoothScroll = () => {
               behavior: "smooth"
             });
           }
+
         }
       });
     }

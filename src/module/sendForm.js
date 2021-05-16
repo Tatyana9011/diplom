@@ -43,12 +43,14 @@ const sendForm = idForm => {
     formData.forEach((val, key) => {
       body[key] = val;
     });
+
     const outputData = response => {
       if (response.status !== 200) {
         throw new Error('status network not 200');
       }
       statusMessage.textContent = successMessage;
     };
+
     const errorData = err => {
       statusMessage.textContent = errorMessage;
       console.error(err);
@@ -62,10 +64,12 @@ const sendForm = idForm => {
 
         modalCallback.style.display = 'none';
         modalOverlay.style.display = 'none';
+
         setTimeout(() => {
           statusMessage.textContent = '';
           statusMessage.remove();
         }, 2000);
+
       }, 3000);
     };
     if (error === 0) {
