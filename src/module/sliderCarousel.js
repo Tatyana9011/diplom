@@ -1,28 +1,31 @@
 // eslint-disable-next-line strict
 'use strict';
 
-const sliderCarousel = quantity => {
+const sliderCarousel = (quantity = 1, div) => {
   const sliderContent = document.querySelector('.services-carousel'),
     btnSlider = document.querySelector('.services-arrow'),
     slide = sliderContent.querySelectorAll('.col-sm-6,.col-md-4');
 
-  let currentSlideNext = quantity - 1;
-  let currentSlidePrev = 0;
-
-  slide.forEach(item => item.style.display = 'none');
+  slide.forEach(item => {
+    item.style.display = 'none';
+  });
 
   const elementMap = [];
+  let currentSlideNext = quantity - 1;
+  let currentSlidePrev = 0;
 
   for (let i = 0; i < quantity; i++) {
     elementMap.push(slide[i]);
   }
 
   const renderElem = arr => {
-    sliderContent.innerHTML = '';
+    div.innerHTML = '';
     arr.forEach(item => {
-      item.style.display = 'block';
-      sliderContent.append(item);
+      const elemClone = item.cloneNode(true);
+      elemClone.style.display = 'block';
+      div.innerHTML += elemClone.outerHTML;
     });
+    sliderContent.prepend(div);
   };
 
   renderElem(elementMap);
