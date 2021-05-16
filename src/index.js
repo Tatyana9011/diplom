@@ -10,15 +10,7 @@ import validationAllInput from './module/validationForm';
 
 smoothScroll();
 
-const imgWrapper = document.querySelectorAll('.fancyboxModal');
-imgWrapper.forEach(item => {
-  item.addEventListener('click', event => {
-    event.preventDefault();
-    openModal();
-  });
-});
 
-slider();
 
 const div = document.createElement('div');
 const checkResponse = () => {
@@ -37,6 +29,16 @@ const checkResponse = () => {
 checkResponse();
 
 window.addEventListener('resize', checkResponse);
+
+const imgWrapper = document.querySelectorAll('.fancyboxModal');
+imgWrapper.forEach(item => {
+  item.addEventListener('click', event => {
+    event.preventDefault();
+    openModal();
+  });
+});
+
+slider();
 
 accordion();
 
