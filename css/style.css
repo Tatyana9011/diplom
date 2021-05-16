@@ -1248,3 +1248,6 @@ video#video_background {
 .element-content.active {
   height: 100%;
 }
+.portfolio-item-active {
+  display: block;
+}

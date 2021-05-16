@@ -3,44 +3,39 @@
 import openModal from './module/openModal';
 import smoothScroll from './module/smoothScroll';
 import slider from './module/slider';
-import SliderCarousel from './module/sliderCarousel';
+import sliderCarousel from './module/sliderCarousel';
 import accordion from './module/accordeon';
 import sendForm from './module/sendForm';
 import validationAllInput from './module/validationForm';
 
+smoothScroll();
+
 const imgWrapper = document.querySelectorAll('.fancyboxModal');
 imgWrapper.forEach(item => {
-  item.addEventListener('click', openModal);
+  item.addEventListener('click', event => {
+    event.preventDefault();
+    openModal();
+  });
 });
 
-smoothScroll();
 slider();
 
-const options = {
-  main: ".services-elements",
-  wrap: '.services-carousel',
-  next: '.arrow-right',
-  prev: '.arrow-left',
-  slidesToShow: 4,
-  infinity: true,
-  responsive: [{
-    breakpoint: 1024,
-    slidesToShow: 3
-  },
-  {
-    breakpoint: 768,
-    slidesToShow: 2
-  },
-  {
-    breakpoint: 576,
-    slidesToShow: 1
+const checkResponse = () => {
+  if (document.documentElement.clientWidth > 990) {
+    sliderCarousel(3);
+  } else if (document.documentElement.clientWidth > 760) {
+    sliderCarousel(2);
+  } else {
+    sliderCarousel(1);
   }
-  ]
 };
 
-const carousel = new SliderCarousel(options);
-carousel.init();
+checkResponse();
+
+window.addEventListener('resize', checkResponse);
+
 accordion();
 
 validationAllInput();
+
 sendForm('form-callback');

@@ -23,7 +23,6 @@ const smoothScroll = () => {
     }
   });
 
-
   const scroll = () => {
     const scrollBlocks = document.querySelectorAll('a[href]');
 
@@ -35,10 +34,11 @@ const smoothScroll = () => {
 
         if (id !== '#') {
           const getId = document.querySelector(id);
-          if (getId !== null) {
-            getId.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
+
+          if (getId !== null && !getId.matches('.modal, .modal-callback')) {
+            window.scrollTo({
+              top: getId.offsetTop - 100,
+              behavior: "smooth"
             });
           }
         }

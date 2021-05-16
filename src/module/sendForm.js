@@ -7,7 +7,13 @@ const sendForm = idForm => {
 
   const form = document.getElementById(idForm);
   const statusMessage = document.createElement('div');
-  statusMessage.style.cssText = 'font-size: 2rem;   color: blue;';
+  statusMessage.style.cssText = `
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  color: blue;
+  justify-content: center;
+  `;
 
   const validateInput = formAllInput => {
     const input = formAllInput.querySelectorAll('input');

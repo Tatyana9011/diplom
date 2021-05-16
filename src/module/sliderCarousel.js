@@ -1,123 +1,78 @@
-'use strick';
+// eslint-disable-next-line strict
+'use strict';
 
-class SliderCarousel {
-  constructor({
-    main,
-    wrap,
-    next,
-    prev,
-    infinity = false,
-    slidesToShow = 3,
-    responsive = [],
-    position = 0 }) {
-    if (!main || !wrap) {
-      console.log('Необходимо передать два ствойства "main" и "wrap"!');
-    }
-    this.main = document.querySelector(main);
-    this.wrap = document.querySelector(wrap);
-    this.slides = document.querySelector(wrap).children;
-    this.next = document.querySelector(next);
-    this.prev = document.querySelector(prev);
-    this.slidesToShow = slidesToShow;
-    this.options = {
-      position,
-      widthSlide: Math.floor(100 / this.slidesToShow),
-      infinity,
-      maxPosition: this.slides.length - this.slidesToShow,
-    };
-    this.responsive = responsive;
+const sliderCarousel = quantity => {
+  const sliderContent = document.querySelector('.services-carousel'),
+    btnSlider = document.querySelector('.services-arrow'),
+    slide = sliderContent.querySelectorAll('.col-sm-6,.col-md-4');
+
+  let currentSlideNext = quantity - 1;
+  let currentSlidePrev = 0;
+
+  slide.forEach(item => item.style.display = 'none');
+
+  const elementMap = [];
+
+  for (let i = 0; i < quantity; i++) {
+    elementMap.push(slide[i]);
   }
 
-  init() {
-    this.addGloClass();
-    this.addStyle();
-    if (this.prev && this.next) {
-      this.controlSlider();
-    }
-    if (this.responsive) {
-      this.responseInit();
-    }
-  }
-  addGloClass() {
-    this.main.classList.add('glo-slider');
-    this.wrap.classList.add('glo-slider__wrap');
-    for (const item of this.slides) {
-      item.classList.add('glo-slider__item');
-    }
-  }
-  addStyle() {
-    let style = document.getElementById('sliderCarousel-style');
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'sliderCarousel-style';
-    }
-    document.head.appendChild(style);
-    style.textContent = `
-      .glo-slider{
-      overflow:hidden  !important;
-      }
-      .glo-slider__wrap{
-        display:flex  !important;
-        transition: transform 0.5s  !important;
-        will-change:transform  !important;
-      }
-      .glo-slider__item{ 
-        display:flex  !important;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 ${this.options.widthSlide}%  !important;
-        margin: auto 0  !important;
-      }
-    `;
-  }
-  controlSlider() {
-    this.prev.addEventListener('click', this.prevSlider.bind(this));
-    this.next.addEventListener('click', this.nextSlider.bind(this));
-  }
+  const renderElem = arr => {
+    sliderContent.innerHTML = '';
+    arr.forEach(item => {
+      item.style.display = 'block';
+      sliderContent.append(item);
+    });
+  };
+  renderElem(elementMap);
 
-  prevSlider() {
-    if (this.options.infinity || this.options.position > 0) {
-      this.options.position--;
-      console.log('this.options.position: ', this.options.position);
-      if (this.options.position < 0) {
-        console.log('this.options.position: ', this.options.position);
-        this.options.position = this.options.maxPosition;
-      }
-      this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
-    }
-  }
-  nextSlider() {
-    if (this.options.infinity || this.options.position < this.options.maxPosition) {
-      ++this.options.position;
-      if (this.options.position > this.options.maxPosition) {
-        this.options.position = 0;
-      }
-      this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
-    }
-  }
+  const prevSlide = index => {
+    elementMap.splice(2);
+    elementMap.unshift(slide[index]);
+    renderElem(elementMap);
+  };
 
-  responseInit() {
-    const slidesToShowDefault = this.slidesToShow;
-    const allResponsive = this.responsive.map(item => item.breakpoint);
-    const maxResponsive = Math.max(...allResponsive);
-    const checkResponse = () => {
-      const widthWindow = document.documentElement.clientWidth;
-      if (widthWindow < maxResponsive) {
-        for (let i = 0; i < allResponsive.length; i++) {
-          if (widthWindow < allResponsive[i]) {
-            this.slidesToShow = this.responsive[i].slidesToShow;
-            this.options.widthSlide = Math.floor(100 / this.slidesToShow);
-            this.addStyle();
-          }
-        }
+  const nextSlide = index => {
+    elementMap.splice(0, 1);
+    elementMap.push(slide[index]);
+    renderElem(elementMap);
+  };
+
+  btnSlider.addEventListener('click', event => {
+    event.preventDefault();
+    const target = event.target;
+
+    if (target.matches('.arrow-right')) {
+
+      if (currentSlideNext >= slide.length - 1) {
+        currentSlideNext = 0;
+        currentSlidePrev++;
+        nextSlide(currentSlideNext);
       } else {
-        this.slidesToShow = slidesToShowDefault;
-        this.options.widthSlide = Math.floor(100 / this.slidesToShow);
-        this.addStyle();
+        currentSlideNext++;
+        currentSlidePrev++;
+        nextSlide(currentSlideNext);
       }
-    };
-    checkResponse();
-    window.addEventListener('resize', checkResponse);
-  }
-}
-export default SliderCarousel;
+      if (currentSlidePrev > slide.length - 1) {
+        currentSlidePrev = 0;
+      }
+
+    } else if (target.matches('.arrow-left')) {
+      if (currentSlidePrev <= 0) {
+        currentSlidePrev = slide.length - 1;
+        currentSlideNext--;
+        prevSlide(currentSlidePrev);
+      } else {
+        currentSlideNext--;
+        currentSlidePrev--;
+        prevSlide(currentSlidePrev);
+      }
+      if (currentSlideNext < 0) {
+        currentSlideNext = slide.length - 1;
+      }
+    }
+  });
+};
+
+export default sliderCarousel;
+
