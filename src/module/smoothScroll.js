@@ -35,7 +35,7 @@ const smoothScroll = () => {
         event.preventDefault();
         const id = scrollBlock.getAttribute("href");
 
-        if (id !== '#') {
+        if (id !== '#' && id !== 'http://collary.ru') {
           const getId = document.querySelector(id);
 
           if (getId !== null && !getId.matches('.modal, .modal-callback')) {

@@ -1,8 +1,8 @@
 // eslint-disable-next-line strict
 'use strict';
 const validationAllInput = () => {
-  const nameInputs = document.querySelectorAll('input[placeholder="Ваше имя"]'),
-    phoneInputs = document.querySelectorAll('input[placeholder="Телефон*"]'),
+  const nameInputs = document.querySelectorAll('input[name="fio"]'),
+    phoneInputs = document.querySelectorAll('input[name="tel"]'),
     allInputs = document.querySelectorAll('input');
 
   const validatePhone = (elem, event) => {
@@ -47,11 +47,11 @@ const validationAllInput = () => {
     input.addEventListener('blur', event => {
       event.preventDefault();
       const target = event.target;
-      if (target.matches('input[placeholder="Ваше имя"]')) {
+      if (target.matches('input[name="fio"]')) {
         blurValidateName(input, target);
         validateInputBlur(target, input, target.value !== '');
       }
-      if (target.matches('input[placeholder="Телефон*"]')) {
+      if (target.matches('input[name="tel"]')) {
         validateInputBlur(target, input, target.value.match(/^(\+ |\+)?3?[78]?([- ()]*\d){10}$/));
       }
     });

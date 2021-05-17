@@ -19,7 +19,7 @@ const sendForm = idForm => {
     const input = formAllInput.querySelectorAll('input');
     let error = 0;
     input.forEach(elem => {
-      if (elem.classList.contains('error')) {
+      if (elem.classList.contains('error') || elem.value === '') {
         error++;
       }
     });
@@ -60,9 +60,11 @@ const sendForm = idForm => {
       form.reset();
       setTimeout(() => {
         const modalCallback = document.querySelector('.modal-callback'),
+          modal = document.getElementById('application'),
           modalOverlay = document.querySelector('.modal-overlay');
 
         modalCallback.style.display = 'none';
+        modal.style.display = 'none';
         modalOverlay.style.display = 'none';
 
         setTimeout(() => {

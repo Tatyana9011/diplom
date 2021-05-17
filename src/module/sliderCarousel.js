@@ -1,6 +1,11 @@
 // eslint-disable-next-line strict
 'use strict';
 
+import openModal from './openModal';
+import validationForm from './validationForm';
+import sendForm from './sendForm';
+
+
 const sliderCarousel = (quantity = 1, div) => {
   const sliderContent = document.querySelector('.services-carousel'),
     btnSlider = document.querySelector('.services-arrow'),
@@ -20,12 +25,23 @@ const sliderCarousel = (quantity = 1, div) => {
 
   const renderElem = arr => {
     div.innerHTML = '';
+    let elemClone;
     arr.forEach(item => {
-      const elemClone = item.cloneNode(true);
+      elemClone = item.cloneNode(true);
       elemClone.style.display = 'block';
       div.innerHTML += elemClone.outerHTML;
     });
     sliderContent.prepend(div);
+
+    const slideClone = sliderContent.querySelectorAll('.col-sm-6,.col-md-4');
+    slideClone.forEach(item => {
+      item.addEventListener('click', event => {
+        event.preventDefault();
+        openModal(event);
+      });
+    });
+    validationForm();
+    sendForm('form-application');
   };
 
   renderElem(elementMap);
@@ -76,6 +92,7 @@ const sliderCarousel = (quantity = 1, div) => {
       }
     }
   });
+
 };
 
 export default sliderCarousel;
