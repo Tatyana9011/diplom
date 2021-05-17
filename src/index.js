@@ -26,7 +26,7 @@ checkResponse();
 
 window.addEventListener('resize', checkResponse);
 
-const imgWrapper = document.querySelectorAll('.fancyboxModal');
+const imgWrapper = document.querySelectorAll('.callback-btn, .button-services');
 imgWrapper.forEach(item => {
   item.addEventListener('click', event => {
     event.preventDefault();
@@ -36,7 +36,7 @@ imgWrapper.forEach(item => {
 
 validationForm();
 sendForm('form-callback');
-
+sendForm('form-application');
 
 slider();
 

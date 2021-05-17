@@ -40,8 +40,6 @@ const sliderCarousel = (quantity = 1, div) => {
         openModal(event);
       });
     });
-    validationForm();
-    sendForm('form-application');
   };
 
   renderElem(elementMap);
