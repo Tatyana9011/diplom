@@ -2,9 +2,6 @@
 'use strict';
 
 import openModal from './openModal';
-import validationForm from './validationForm';
-import sendForm from './sendForm';
-
 
 const sliderCarousel = (quantity = 1, div) => {
   const sliderContent = document.querySelector('.services-carousel'),
